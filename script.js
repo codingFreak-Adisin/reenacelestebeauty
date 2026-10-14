@@ -74,25 +74,32 @@ document.querySelectorAll('.faq-item button').forEach((button) => {
   });
 });
 
+const WHATSAPP_NUMBER = '919371555393';
 const form = document.querySelector('.enquiry-form');
 const toast = document.querySelector('.toast');
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const data = new FormData(form);
+  const date = data.get('date')
+    ? new Date(`${data.get('date')}T00:00`).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+    : 'To be confirmed';
   const message = [
     'Hello Reena! I would like to enquire with Reena Celeste Beauty.',
-    `Name: ${data.get('name') || '—'}`,
-    `Service: ${data.get('service') || '—'}`,
-    `Event date: ${data.get('date') || 'To be confirmed'}`,
-    `Details: ${data.get('message') || 'I would love to discuss my look.'}`
+    '',
+    `Name: ${data.get('name')}`,
+    `Service: ${data.get('service')}`,
+    `Event date: ${date}`,
+    `Details: ${data.get('message').trim() || 'I would love to discuss my look.'}`
   ].join('\n');
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
+  // Open synchronously so the click still counts as a user gesture for popup blockers.
+  const whatsappWindow = window.open(whatsappUrl, '_blank');
+  if (whatsappWindow) whatsappWindow.opener = null;
+  else window.location.href = whatsappUrl;
   try { await navigator.clipboard.writeText(message); } catch (_) { /* Clipboard can be unavailable on local HTTP. */ }
   toast.classList.add('is-visible');
-  document.querySelector('.form-note').textContent = 'Your enquiry brief is copied—paste it into your Instagram message.';
-  setTimeout(() => {
-    window.open('https://www.instagram.com/reenacelestebeauty/', '_blank', 'noopener,noreferrer');
-  }, 550);
+  document.querySelector('.form-note').textContent = 'WhatsApp is open with your brief. Just tap send.';
   setTimeout(() => toast.classList.remove('is-visible'), 3000);
 });
 

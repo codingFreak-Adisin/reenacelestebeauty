@@ -283,23 +283,33 @@ h1 em, h2 em { color: var(--wine); font-weight: 400; }
 .contact .eyebrow { color: var(--gold); }
 .contact h2 { margin: 30px 0; }
 .contact-copy > p { max-width: 560px; color: rgba(255,255,255,.72); }
-.contact-social { margin-top: 45px; padding-top: 25px; border-top: 1px solid rgba(214,179,107,.35); display: grid; gap: 5px; }
+.contact-social { margin-top: 45px; padding-top: 25px; border-top: 1px solid rgba(214,179,107,.35); display: grid; grid-template-columns: repeat(2, max-content); gap: 22px 56px; }
+.contact-social > div { display: grid; gap: 5px; }
 .contact-social span { color: var(--gold); font-size: 8px; letter-spacing: .2em; }
 .contact-social a { width: max-content; font-family: var(--serif); font-size: 22px; }
-.enquiry-form { position: relative; z-index: 1; padding: clamp(32px, 4.5vw, 60px); border: 1px solid rgba(214,179,107,.55); outline: 1px solid rgba(214,179,107,.25); outline-offset: -12px; background: rgba(255,255,255,.04); backdrop-filter: blur(5px); }
-.enquiry-form::before { content: ""; position: absolute; left: 50%; top: -8px; translate: -50% 0; width: 120px; height: 16px; background: var(--wine-deep) var(--flourish) center / 96px 14px no-repeat; }
-.field { display: grid; gap: 7px; margin-bottom: 20px; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.field label { color: var(--gold); text-transform: uppercase; font-size: 8px; font-weight: 700; letter-spacing: .18em; }
-.field input, .field select, .field textarea { width: 100%; border: 0; border-bottom: 1px solid rgba(255,255,255,.25); border-radius: 0; outline: none; background: transparent; color: white; padding: 9px 0 13px; resize: vertical; font-size: 13px; }
-.field input:focus, .field select:focus, .field textarea:focus { border-bottom-color: var(--gold); }
-.field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.42); }
+.enquiry-form { position: relative; z-index: 1; padding: clamp(58px, 5.5vw, 76px) clamp(32px, 4.5vw, 64px) clamp(36px, 4vw, 52px); border: 1px solid rgba(214,179,107,.6); outline: 1px solid rgba(214,179,107,.28); outline-offset: -12px; background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.015) 55%, rgba(214,179,107,.06)); backdrop-filter: blur(6px); box-shadow: 0 40px 80px rgba(30,6,14,.35), inset 0 1px 0 rgba(255,255,255,.08); }
+.form-crest { position: absolute; left: 50%; top: 0; translate: -50% -50%; width: 92px; height: 92px; padding: 6px; border-radius: 50%; background: radial-gradient(circle, #fffaf2 58%, #f3e3c7); box-shadow: 0 0 0 6px var(--wine-deep), 0 0 0 7px rgba(214,179,107,.55), 0 14px 30px rgba(20,4,10,.45); }
+.form-corner { position: absolute; width: 9px; height: 9px; background: var(--gold); rotate: 45deg; box-shadow: 0 0 0 3px var(--wine-deep), 0 0 12px rgba(214,179,107,.6); }
+.form-corner.tl { top: -5px; left: -5px; } .form-corner.tr { top: -5px; right: -5px; } .form-corner.bl { bottom: -5px; left: -5px; } .form-corner.br { bottom: -5px; right: -5px; }
+.form-head { margin-bottom: 30px; text-align: center; }
+.form-kicker { margin: 0; color: var(--gold); font-size: 9px; font-weight: 700; letter-spacing: .32em; }
+.form-head h3 { margin: 10px 0 14px; color: #fff8ee; font: italic 500 clamp(32px, 3vw, 42px)/1.05 var(--serif); }
+.form-divider { width: min(260px, 70%); height: auto; margin: 0 auto; opacity: .95; }
+.field { display: grid; gap: 8px; margin-bottom: 24px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.field label { color: var(--gold); text-transform: uppercase; font-size: 9px; font-weight: 700; letter-spacing: .22em; transition: color .3s ease; }
+.field:focus-within label { color: #f0d79c; }
+.field input, .field select, .field textarea { width: 100%; border: 0; border-bottom: 1px solid rgba(214,179,107,.35); border-radius: 0; outline: none; background: transparent; color: #fff8ee; padding: 9px 0 13px; resize: vertical; color-scheme: dark; font-family: var(--sans); font-size: 15px; transition: border-color .3s ease, box-shadow .3s ease; }
+.field select { appearance: none; padding-right: 26px; cursor: pointer; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23d6b36b' stroke-width='1.4'/%3E%3C/svg%3E") right 4px center / 12px 8px no-repeat; }
+.field input:focus, .field select:focus, .field textarea:focus { border-bottom-color: var(--gold); box-shadow: 0 1px 0 var(--gold); }
+.field input::placeholder, .field textarea::placeholder { color: rgba(255,248,238,.4); font-style: italic; }
 .field select option { color: var(--ink); }
-.field input::-webkit-calendar-picker-indicator { filter: invert(1); opacity: .65; }
-.button-gold { width: 100%; margin-top: 11px; background: var(--gold); color: var(--brown); }
-.button-gold i { background: var(--brown); color: white; }
-.button-gold:hover { background: #e1c47e; }
-.form-note { margin: 13px 0 0; color: rgba(255,255,255,.5); text-align: center; font-size: 9px; }
+.field input::-webkit-calendar-picker-indicator { opacity: .75; cursor: pointer; }
+.button-gold { width: 100%; margin-top: 14px; background: linear-gradient(100deg, #c9a24f, #e6cb85 50%, #c9a24f); background-size: 200% 100%; color: var(--wine-deep); box-shadow: inset 0 0 0 1px rgba(255,240,200,.6), 0 14px 32px rgba(20,4,10,.35); transition: background-position .6s ease, transform .3s ease; }
+.button-gold .wa-icon { width: 20px; height: 20px; fill: currentColor; }
+.button-gold i { background: var(--wine-deep); color: #f0d79c; }
+.button-gold:hover { background-position: 100% 0; }
+.form-note { margin: 16px 0 0; color: rgba(255,248,238,.6); text-align: center; font-size: 11px; letter-spacing: .02em; }
 .mandala-contact-one { width: 560px; height: 560px; left: -220px; top: -200px; opacity: .1; animation: spin 180s linear infinite; }
 .mandala-contact-two { width: 420px; height: 420px; right: -150px; bottom: -170px; opacity: .1; animation: spin 150s linear infinite reverse; }
 
@@ -410,7 +420,9 @@ h1 em, h2 em { color: var(--wine); font-weight: 400; }
   .journal-card:last-child { grid-column: span 1; }
   .journal-image, .journal-card:last-child .journal-image { height: 380px; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
-  .enquiry-form { padding: 27px 20px; }
+  .enquiry-form { margin-top: 34px; padding: 56px 22px 30px; }
+  .form-crest { width: 76px; height: 76px; }
+  .contact-social { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: center; }
 }
 
